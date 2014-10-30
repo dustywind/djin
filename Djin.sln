@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Djin", "Djin\Djin.csproj", "{99B73B83-6A78-426F-B5D9-57AB923499BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DjinModules", "DjinModules", "{E07D6C0D-64B0-4269-BDA6-7E2ECC977D2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjinWebListener", "DjinModules\DjinWebListener\DjinWebListener.csproj", "{4351B81A-089B-4338-BE6F-57516F46C50D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DjinPlayground", "DjinPlayground", "{76DFD27D-766A-4707-B229-ECA18F5956EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjinPlayground", "DjinPlayground\DjinPlayground.csproj", "{0A15C4AC-0F96-4D27-84EE-FF3AA9405714}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99B73B83-6A78-426F-B5D9-57AB923499BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99B73B83-6A78-426F-B5D9-57AB923499BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99B73B83-6A78-426F-B5D9-57AB923499BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99B73B83-6A78-426F-B5D9-57AB923499BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4351B81A-089B-4338-BE6F-57516F46C50D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4351B81A-089B-4338-BE6F-57516F46C50D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4351B81A-089B-4338-BE6F-57516F46C50D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4351B81A-089B-4338-BE6F-57516F46C50D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A15C4AC-0F96-4D27-84EE-FF3AA9405714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A15C4AC-0F96-4D27-84EE-FF3AA9405714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A15C4AC-0F96-4D27-84EE-FF3AA9405714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A15C4AC-0F96-4D27-84EE-FF3AA9405714}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4351B81A-089B-4338-BE6F-57516F46C50D} = {E07D6C0D-64B0-4269-BDA6-7E2ECC977D2F}
+		{0A15C4AC-0F96-4D27-84EE-FF3AA9405714} = {76DFD27D-766A-4707-B229-ECA18F5956EA}
+	EndGlobalSection
+EndGlobal
