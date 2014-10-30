@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjinPlayground", "DjinPlayg
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DjinShared", "DjinShared", "{39896A62-0FD7-4963-84E4-EE77ACF7A5F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjinInterfaces", "DjinShared\DjinInterfaces\DjinInterfaces.csproj", "{7342A27C-FBFF-44CD-8B7B-76A40EB1F97E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0A15C4AC-0F96-4D27-84EE-FF3AA9405714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A15C4AC-0F96-4D27-84EE-FF3AA9405714}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A15C4AC-0F96-4D27-84EE-FF3AA9405714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7342A27C-FBFF-44CD-8B7B-76A40EB1F97E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7342A27C-FBFF-44CD-8B7B-76A40EB1F97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7342A27C-FBFF-44CD-8B7B-76A40EB1F97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7342A27C-FBFF-44CD-8B7B-76A40EB1F97E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,5 +46,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4351B81A-089B-4338-BE6F-57516F46C50D} = {E07D6C0D-64B0-4269-BDA6-7E2ECC977D2F}
 		{0A15C4AC-0F96-4D27-84EE-FF3AA9405714} = {76DFD27D-766A-4707-B229-ECA18F5956EA}
+		{7342A27C-FBFF-44CD-8B7B-76A40EB1F97E} = {39896A62-0FD7-4963-84E4-EE77ACF7A5F5}
 	EndGlobalSection
 EndGlobal
