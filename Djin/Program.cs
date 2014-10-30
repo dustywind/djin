@@ -8,8 +8,14 @@ namespace Djin
 {
     class Program
     {
+        private static string Usage = "Type:\n./djin.exd (to run normally)\n./djin.exe --test (for debugging modules)";
+
         static void Main(string[] args)
         {
+            /**
+             * DEBUG-MODE
+             * Compile as Debug to gain acces to Playground
+             */
             if (args.Length == 1)
             {
 #if DEBUG
@@ -17,7 +23,16 @@ namespace Djin
                 {
                     Djin.Playground.Playground.Play();
                 }
+                else
+                {
+                    Console.WriteLine(Usage);
+                }
 #endif
+            }
+            else
+            {
+
+                
             }
             return;
         }

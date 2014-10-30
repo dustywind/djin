@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DjinPlayground\DjinPlayground\DjinPlayground.csproj" Condition="'$(Configuration)'=='Debug'">
+    <ProjectReference Include="..\DjinPlayground\DjinPlayground.csproj" Condition="'$(Configuration)'=='Debug'">
       <Project>{0a15c4ac-0f96-4d27-84ee-ff3aa9405714}</Project>
       <Name>DjinPlayground</Name>
     </ProjectReference>
