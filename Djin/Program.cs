@@ -16,7 +16,7 @@ namespace Djin
              * DEBUG-MODE
              * Compile as Debug to gain acces to Playground
              */
-            if (args.Length == 1)
+            if (args.Length > 0)
             {
 #if DEBUG
                 if (args[0].CompareTo("--test") == 0)
@@ -31,11 +31,8 @@ namespace Djin
             }
             else
             {
-
-                
             }
             return;
         }
     }
 }
-
