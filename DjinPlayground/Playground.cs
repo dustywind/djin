@@ -10,6 +10,7 @@ namespace Djin.Playground
     {
         public static void Play()
         {
+            Console.WriteLine("Playground");
         }
     }
 }
