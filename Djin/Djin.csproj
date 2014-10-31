@@ -42,11 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DjinCore\Playground\CorePlayground.cs" />
-    <Compile Include="DjinCore\ConfigManager\ConfigManager.cs" />
-    <Compile Include="DjinCore\ModuleManager\InstanceCreator.cs" />
-    <Compile Include="DjinCore\ModuleManager\ModuleDescription.cs" />
-    <Compile Include="DjinCore\ModuleManager\ModuleManager.cs" />
-    <Compile Include="DjinCore\ModuleManager\ModuleThread.cs" />
+    <Compile Include="DjinCore\ConfigManagement\ConfigManager.cs" />
+    <Compile Include="DjinCore\ModuleManagement\InstanceCreator.cs" />
+    <Compile Include="DjinCore\ModuleManagement\ModuleDescription.cs" />
+    <Compile Include="DjinCore\ModuleManagement\ModuleManager.cs" />
+    <Compile Include="DjinCore\ModuleManagement\ModuleThread.cs" />
     <Compile Include="DjinCore\RemoteLoader\RemoteLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
