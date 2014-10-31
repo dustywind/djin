@@ -10,23 +10,24 @@ namespace Djin.Core.ModuleManagement
     {
         internal string Namespace;
         internal string ClassName;
+        internal string ModuleName { get { return Path.GetFileName(AssemblyPath); } }
 
-        internal string Name { get { return this.ToString(); } }
+        internal string FullName { get { return this.ToString(); } }
 
-        private string _Path;
-        internal string Path {
+        private string _AssemblyPath;
+        internal string AssemblyPath {
             get {
-                if (_Path == null){
+                if (_AssemblyPath == null){
                     throw new Exception("ModuleDescription.Path was not set");
                 }
-                return _Path;
+                return _AssemblyPath;
             }
             set
             {
                 if( File.Exists(value) == false) {
                     throw new FileNotFoundException("Could not find: " + value ?? "null");
                 }
-                _Path = value;
+                _AssemblyPath = value;
             }
         }
 

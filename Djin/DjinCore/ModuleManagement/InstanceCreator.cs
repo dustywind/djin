@@ -21,12 +21,18 @@ namespace Djin.Core.ModuleManagement
         {
             try
             {
-                IDjinModule module = GetAssembly().CreateInstance(Description.Name) as IDjinModule;
-                if (module == null)
+                //IDjinModule module = GetAssembly().GetModyle().CreateInstance(Description.Name) as IDjinModule;
+                var assembly = GetAssembly();
+                var module = assembly.GetModule(Description.ModuleName);
+                var type = module.GetType(Description.FullName);
+                ConstructorInfo constructorInfo = type.GetConstructor(new Type[0]);
+                var instance = constructorInfo.Invoke(null) as IDjinModule;
+
+                if (instance == null)
                 {
                     throw new Exception("Could not create a instanceof: " + Description);
                 }
-                return module;
+                return instance;
             }
             catch (Exception e)
             {
@@ -38,7 +44,7 @@ namespace Djin.Core.ModuleManagement
 
         private Assembly GetAssembly()
         {
-            return Assembly.LoadFile(Description.Path);
+            return Assembly.LoadFile(Description.AssemblyPath);
         }
     }
 }

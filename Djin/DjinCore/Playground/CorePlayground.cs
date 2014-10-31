@@ -15,7 +15,12 @@ namespace Djin.Core.Playground
             var mm = new ModuleManager();
             var mdesc = new ModuleDescription();
 
-            mdesc.Path = @"E:\Projects\djin\DjinModules\DjinWebListener\bin\Debug\DjinModuleTest.dll";
+            mdesc.AssemblyPath = @"E:\Projects\djin\DjinModules\DjinModuleTest\bin\Debug\DjinModuleTest.dll";
+            mdesc.ClassName = "DjinModuleTest";
+            mdesc.Namespace = "Djin.Modules.DjinModuleTest";
+
+
+            mm.AddModule(mdesc);
         }
     }
 }
