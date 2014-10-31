@@ -21,7 +21,6 @@ namespace Djin.Core.ModuleManagement
         {
             try
             {
-                //IDjinModule module = GetAssembly().GetModyle().CreateInstance(Description.Name) as IDjinModule;
                 var assembly = GetAssembly();
                 var module = assembly.GetModule(Description.ModuleName);
                 var type = module.GetType(Description.FullName);

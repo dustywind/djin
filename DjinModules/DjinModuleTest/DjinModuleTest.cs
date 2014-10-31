@@ -8,34 +8,39 @@ namespace Djin.Modules.DjinModuleTest
 {
     public class DjinModuleTest : global::Djin.Shared.Interfaces.IDjinModule
     {
+        private string INSTALL = "Djin.Install";
+        private string UNINSTALL = "Djin.Uninstall";
+        private string ON_START= "Djin.OnStart";
+        private string RUN = "Djin.Run";
+        private string ON_STOP = "Djin.OnStop";
 
         public void Install()
         {
-            Console.WriteLine("DjinModuleTest.Install");
+            Console.WriteLine(this.INSTALL);
             return;
         }
 
         public void Uninstall()
         {
-            Console.WriteLine("Djin.ModuleTest.Uninstall");
+            Console.WriteLine(this.UNINSTALL);
             return;
         }
 
         public void OnStart()
         {
-            Console.WriteLine("Djin.OnStart");
+            Console.WriteLine(this.ON_START);
             return;
         }
 
         public void Run()
         {
-            Console.WriteLine("Djin.Run");
+            Console.WriteLine(this.RUN);
             return;
         }
 
         public void OnStop()
         {
-            Console.WriteLine("Djin.OnStop");
+            Console.WriteLine(this.ON_STOP);
             return;
         }
 

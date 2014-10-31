@@ -8,56 +8,90 @@ using Djin.Shared.Interfaces;
 
 namespace Djin.Core.ModuleManagement
 {
+    /**
+     * This class is responsible for both
+     * starting modules and keeping track of them.
+     * For each Instance of a Module a new Thread will be started
+     */
     class ModuleManager
     {
-        /**
-         * This class is responsible for both
-         * starting modules and keeping track of them.
-         * For each Instance of a Module a new Thread will be started
-         */
-        private Dictionary<ModuleDescription, object> RunnningModuleInstances = new Dictionary<ModuleDescription,object>();
+
+        private Dictionary<ModuleDescription, IDjinModule> LoadedModuleInstances = new Dictionary<ModuleDescription,IDjinModule>();
+        private Dictionary<ModuleDescription, ModuleThread> RuningModuleInstances = new Dictionary<ModuleDescription,ModuleThread>();
 
         private static object Lock = new object();
 
         internal ModuleManager() { }
 
+        private ModuleThread GetRunningModule(ModuleDescription description)
+        {
+            return RuningModuleInstances[description];
+        }
+
+        private IDjinModule GetLoadedModule(ModuleDescription description)
+        {
+            return LoadedModuleInstances[description];
+        }
+
 
         private bool ModuleAlreadyRunning(ModuleDescription description)
         {
-            return RunnningModuleInstances.ContainsKey(description);
+            return RuningModuleInstances.ContainsKey(description);
         }
 
-        private void AddModule(ModuleDescription description, IDjinModule instance)
+        private bool ModuleAlreadyLoaded(ModuleDescription description)
         {
-            
+            return LoadedModuleInstances.ContainsKey(description);
         }
+
 
         internal void AddAndRunModule(ModuleDescription description)
         {
-            lock (ModuleManager.Lock) // is this lock necessary?
-            {
-                if (ModuleAlreadyRunning(description) == false)
-                {
-                    try
-                    {
-
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-                }
-            }
+            AddModule(description);
+            RunLoadedModule(description);
         }
 
         internal void AddModule(ModuleDescription description)
         {
+                try
+                {
+                    lock (ModuleManager.Lock)
+                    {
+                        if (LoadedModuleInstances.ContainsKey(description) == false)
+                        {
+                            var moduleInstance = (IDjinModule)new InstanceCreator(description).GetNewInstance();
+                            AddModule(description, moduleInstance);
+                        }
+                    }
+                }
+                catch (Exception e) { throw e; }
+        }
+
+        private void AddModule(ModuleDescription description, IDjinModule instance)
+        {
+            LoadedModuleInstances.Add(description, instance);
+        }
+
+        internal void RunLoadedModule(ModuleDescription description)
+        {
             try
             {
-                var moduleInstance = (IDjinModule)new InstanceCreator(description).GetNewInstance();
-                AddModule(description, moduleInstance);
+                IDjinModule instance = GetLoadedModule(description);
+
+                lock (ModuleManager.Lock)
+                {
+                    if (RuningModuleInstances.ContainsKey(description) == false)
+                    {
+                        var thread = new ModuleThread(instance);
+                        RuningModuleInstances.Add(description, thread);
+                        thread.Start();
+                    }
+                }
             }
-            catch (Exception e) { throw e; }
+            catch (KeyNotFoundException)
+            {
+                throw new Exception("Requested instance of: " + description + " hasn't been loaded yet.");
+            }
         }
 
     }

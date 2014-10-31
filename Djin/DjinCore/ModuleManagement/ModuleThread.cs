@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using Djin.Shared.Interfaces;
 
-namespace Djin.DjinCore.ModuleManagement
+namespace Djin.Core.ModuleManagement
 {
     class ModuleThread
     {
