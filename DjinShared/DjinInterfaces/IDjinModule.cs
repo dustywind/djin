@@ -1,5 +1,4 @@
-﻿
-namespace Djin.Shared.Interfaces
+﻿namespace Djin.Shared.Interfaces
 {
 
     public interface IDjinModule

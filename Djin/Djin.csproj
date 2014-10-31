@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DjinCore\Playground\CorePlayground.cs" />
     <Compile Include="DjinCore\ConfigManager\ConfigManager.cs" />
     <Compile Include="DjinCore\ModuleManager\InstanceCreator.cs" />
     <Compile Include="DjinCore\ModuleManager\ModuleDescription.cs" />

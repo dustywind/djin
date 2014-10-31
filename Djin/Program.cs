@@ -19,13 +19,15 @@ namespace Djin
             if (args.Length > 0)
             {
 #if DEBUG
-                if (args[0].CompareTo("--test") == 0)
+                foreach (var arg in args)
                 {
-                    Djin.Playground.Playground.Play();
-                }
-                else
-                {
-                    Console.WriteLine(Usage);
+                    if (arg.CompareTo("--test") == 0)
+                    {
+                        new Djin.Playground.Playground().Play();
+                    }
+                    else if( arg.CompareTo("--core-test") == 0) {
+                        new Djin.Core.Playground.CorePlayground().Play();
+                    }
                 }
 #endif
             }

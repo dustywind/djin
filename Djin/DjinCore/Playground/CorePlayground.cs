@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Djin.Playground
+namespace Djin.Core.Playground
 {
-    public class Playground
+    class CorePlayground
     {
         public void Play()
         {
-            Console.WriteLine("Playground");
-            
+
         }
     }
 }
