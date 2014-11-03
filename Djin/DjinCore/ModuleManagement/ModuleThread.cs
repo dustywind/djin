@@ -77,6 +77,16 @@ namespace Djin.Core.ModuleManagement
 
     class SuicideCollector
     {
+        /**
+         * The SuicideCollector will tell the ModuleManager
+         * which DjinModule wants to be joined.
+         *  
+         * How it works:
+         * SuicideCollector will create a Thread which checks the 
+         * CorpseCollection-queue to gather DjinModules that terminated
+         * For each DjinModule in CorpseCollection the ModuleManager will be
+         * called to halt the given DjinModule
+         */
         private static SuicideCollector _instance = null;
         internal static SuicideCollector Instance
         {
