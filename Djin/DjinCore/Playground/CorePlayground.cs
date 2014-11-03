@@ -12,7 +12,6 @@ namespace Djin.Core.Playground
     {
         public void Play()
         {
-            var mm = new ModuleManager();
             var mdesc = new ModuleDescription();
 
             mdesc.AssemblyPath = @"E:\Projects\djin\DjinModules\DjinModuleTest\bin\Debug\DjinModuleTest.dll";
@@ -20,8 +19,8 @@ namespace Djin.Core.Playground
             mdesc.Namespace = "Djin.Modules.DjinModuleTest";
 
 
-            mm.AddModule(mdesc);
-            mm.RunLoadedModule(mdesc);
+            ModuleManager.Instance.AddModule(mdesc);
+            ModuleManager.Instance.RunLoadedModule(mdesc);
             "breakpoint".Split(',');
         }
     }
