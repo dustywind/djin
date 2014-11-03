@@ -61,10 +61,17 @@ namespace Djin
             ComputeArgs(args);
 
             /**
-             * TODO
+             * __TODO__:
              * - call ConfigManagement
              * - call ModuleManagement
              * - call CommunicationCenter // communicate with remote host
+             *
+             * __Further explanation__:
+             * CommunicationCenter will block and wait for
+             * commands from a non-local host
+             * As soon as a command was received (in form of a DjinModule), CC will
+             * open a new Thread and execute the DjinModule.
+             * Afterwards CC will wait for further Commands
              */
 
             return;
