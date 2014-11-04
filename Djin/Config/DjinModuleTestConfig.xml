@@ -1,0 +1,28 @@
+﻿<?xml version="1.0"?>
+<Djin>
+
+  <Config>
+    
+  </Config>
+
+  <Modules>
+    <Module>
+      <ModuleInfo>
+        <AssemblyPath>../../../DjinModules/bin/DjinModuleTest.dll</AssemblyPath>
+        <ModuleName>DjinTest</ModuleName>
+        <NameSpace></NameSpace>
+        <ClassName></ClassName>
+        <Parameters>
+          <Parameter>
+            <Name>Foo</Name>
+            <Value>Bar</Value>
+          </Parameter>
+        </Parameters>
+      </ModuleInfo>
+      <ModuleConfig>
+        <LoopOnExit>true</LoopOnExit>
+      </ModuleConfig>
+    </Module>
+  </Modules>
+
+</Djin>

@@ -14,6 +14,8 @@ namespace Djin.Core.ModuleManagement
 
         internal string FullName { get { return this.ToString(); } }
 
+        internal bool Loop = false;
+
         private string _AssemblyPath;
         internal string AssemblyPath {
             get {
@@ -31,7 +33,7 @@ namespace Djin.Core.ModuleManagement
             }
         }
 
-        internal List<object> Parameters = new List<object>();
+        internal Dictionary<string, string> Parameters = new Dictionary<string, string>();
 
         public override string ToString()
         {

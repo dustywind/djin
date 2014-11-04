@@ -22,6 +22,7 @@ namespace Djin.Core.Playground
             ModuleManager.Instance.AddModule(mdesc);
             ModuleManager.Instance.RunLoadedModule(mdesc);
             "breakpoint".Split(',');
+
         }
     }
 }
