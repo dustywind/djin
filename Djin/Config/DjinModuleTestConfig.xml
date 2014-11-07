@@ -1,17 +1,13 @@
 ﻿<?xml version="1.0"?>
 <Djin>
 
-  <Config>
-    
-  </Config>
-
   <Modules>
     <Module>
       <ModuleInfo>
         <AssemblyPath>../../../DjinModules/bin/DjinModuleTest.dll</AssemblyPath>
-        <ModuleName>DjinTest</ModuleName>
-        <NameSpace></NameSpace>
-        <ClassName></ClassName>
+        <ModuleName>DjinModuleTest</ModuleName>
+        <NameSpace>Djin.Modules.DjinModuleTest</NameSpace>
+        <ClassName>DjinModuleTest</ClassName>
         <Parameters>
           <Parameter>
             <Name>Foo</Name>
