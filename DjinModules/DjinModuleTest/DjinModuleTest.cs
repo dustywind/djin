@@ -14,6 +14,12 @@ namespace Djin.Modules.DjinModuleTest
         private string RUN = "Djin.Run";
         private string ON_STOP = "Djin.OnStop";
 
+        /*
+        public DjinModuleTest(Dictionary<string, object> parameters)
+        {
+        }
+        */
+
         public void Install()
         {
             Console.WriteLine(this.INSTALL);
