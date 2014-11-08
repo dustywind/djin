@@ -14,11 +14,12 @@ namespace Djin.Modules.DjinModuleTest
         private string RUN = "Djin.Run";
         private string ON_STOP = "Djin.OnStop";
 
-        /*
+        private Dictionary<string, object> parameters;
+
         public DjinModuleTest(Dictionary<string, object> parameters)
         {
+            this.parameters = parameters;
         }
-        */
 
         public void Install()
         {
