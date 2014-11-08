@@ -10,7 +10,8 @@ namespace Djin.Core.ModuleManagement
     {
         internal string Namespace;
         internal string ClassName;
-        internal string ModuleName { get { return Path.GetFileName(AssemblyPath); } }
+        internal string FileName { get { return Path.GetFileName(AssemblyPath); } }
+        internal string ModuleName;
 
         internal string FullName { get { return this.ToString(); } }
 
@@ -33,7 +34,27 @@ namespace Djin.Core.ModuleManagement
             }
         }
 
-        internal Dictionary<string, string> Parameters = new Dictionary<string, string>();
+        internal string AbsoluteAssemblyPath
+        {
+            get
+            {
+                return Path.GetFullPath(AssemblyPath);
+            }
+        }
+
+        internal Dictionary<string, object> _Parameters;
+        internal Dictionary<string, object> Parameters
+        {
+            get
+            {
+                if (_Parameters == null)
+                {
+                    _Parameters = new Dictionary<string, object>();
+                }
+                return _Parameters;
+            }
+            set { _Parameters = value; }
+        }
 
         public override string ToString()
         {

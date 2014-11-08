@@ -49,7 +49,7 @@ namespace Djin.Core.ModuleManagement
                     }
                 }
             }
-            catch (Exception e) { throw e; }
+            catch (Exception e) { throw; }
         }
 
         override internal void RunLoadedModule(ModuleDescription description)

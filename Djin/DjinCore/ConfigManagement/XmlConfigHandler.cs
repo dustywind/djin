@@ -81,7 +81,7 @@ namespace Djin.Core.ConfigManagement
             }
             catch (XmlException e)
             {
-                throw e;
+                throw;
             }
 
             return nodes;
@@ -106,7 +106,7 @@ namespace Djin.Core.ConfigManagement
             {
                 Console.WriteLine("ERROR XmlConfigHandler.CreateModuleDescriptionFromXmlNode"
                     + e.Message);
-                throw e;
+                throw;
             }
 
             return moduleDescription;

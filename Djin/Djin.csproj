@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DjinCore\ConfigManagement\ConfigHandlerFactory.cs" />
+    <Compile Include="DjinCore\ConfigManagement\IConfigHandler.cs" />
+    <Compile Include="DjinCore\ConfigManagement\XmlConfigHandler.cs" />
     <Compile Include="DjinCore\ModuleManagement\AbstractModuleManager.cs" />
     <Compile Include="DjinCore\Playground\CorePlayground.cs" />
     <Compile Include="DjinCore\ConfigManagement\ConfigManager.cs" />
@@ -54,7 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Config\DjinConfig.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -70,7 +76,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\TestConfig.xml">
+    <Content Include="Config\DjinModuleConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Config\DjinModuleTestConfig.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
