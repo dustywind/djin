@@ -14,6 +14,7 @@ namespace Djin.Core.ModuleManagement
     {
         private IDjinModule ModuleInstance;
         private ModuleDescription Description;
+        private bool Loop;
 
         private Thread ThreadInstance;
         private int MillisecondTimeout = 500;
@@ -24,6 +25,7 @@ namespace Djin.Core.ModuleManagement
         {
             this.ModuleInstance = moduleInstance;
             this.Description = description;
+            this.Loop = Description.Loop;
             ThreadInstance = new Thread(new ThreadStart(this.ThreadProcessing));
         }
 
@@ -49,10 +51,13 @@ namespace Djin.Core.ModuleManagement
         {
             try
             {
-                // call all the functions provided by the module
-                ModuleInstance.OnStart();
-                ModuleInstance.Run();
-                ModuleInstance.OnStop();
+                do
+                {
+                    // call all the functions provided by the module
+                    ModuleInstance.OnStart();
+                    ModuleInstance.Run();
+                    ModuleInstance.OnStop();
+                } while (this.Loop);
 
                 // let the modulemanager know that the Thread want's to exit.
                 this.Suicide();
@@ -75,7 +80,7 @@ namespace Djin.Core.ModuleManagement
         }
     }
 
-    class SuicideCollector
+    class SuicideCollector : IDisposable
     {
         /**
          * The SuicideCollector will tell the ModuleManager
@@ -156,6 +161,14 @@ namespace Djin.Core.ModuleManagement
                 Looper.Abort();
             }
 
+        }
+
+        void IDisposable.Dispose()
+        {
+            // TODO
+            // free BlockingQCollection
+            CorpseCollection.Dispose();
+            throw new NotImplementedException();
         }
     }
 }
