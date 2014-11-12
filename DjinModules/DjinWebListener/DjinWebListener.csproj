@@ -50,10 +50,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y /B $(TargetPath) $(ProjectDir)\..\bin\$(TargetFileName)</PostBuildEvent>
+    <PostBuildEvent>copy /Y /B $(TargetPath) $(ProjectDir)..\bin\$(TargetFileName)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>del /F $(ProjectDir)\..\bin\$(TargetFileName)</PreBuildEvent>
+    <PreBuildEvent>del /F $(ProjectDir)..\bin\$(TargetFileName)</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
