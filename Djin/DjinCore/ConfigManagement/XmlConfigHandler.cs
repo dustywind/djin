@@ -51,12 +51,9 @@ namespace Djin.Core.ConfigManagement
             var modules = new List<ModuleDescription>();
             try
             {
-                var nodes = GetModuleXmlNodeListFromConfig();
-
-                foreach (XmlNode node in nodes)
+                foreach (XmlNode node in GetModuleXmlNodeListFromConfig())
                 {
-                    var moduleDescription = CreateModuleDescriptionFromXmlNode(node);
-                    modules.Add(moduleDescription);
+                    modules.Add(CreateModuleDescriptionFromXmlNode(node));
                 }
             }
             catch (Exception e)
@@ -71,45 +68,43 @@ namespace Djin.Core.ConfigManagement
             var nodes = new List<XmlNode>();
             try
             {
-                XmlDocument xDoc = new XmlDocument();
-                xDoc.Load(configPath);
-                var moduleNodes= xDoc.SelectNodes(ModuleXPath);
-                foreach (XmlNode moduleNode in moduleNodes)
+                foreach (XmlNode moduleNode in GetXmlNodesFromConfig())
                 {
                     nodes.Add(moduleNode);
                 }
             }
-            catch (XmlException e)
+            catch (XmlException)
             {
                 throw;
             }
-
             return nodes;
+        }
+
+        private XmlNodeList GetXmlNodesFromConfig()
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(configPath);
+            return xDoc.SelectNodes(ModuleXPath);
         }
 
         private ModuleDescription CreateModuleDescriptionFromXmlNode(XmlNode module)
         {
-
-            var moduleDescription = new ModuleDescription();
             try
             {
-                moduleDescription.AssemblyPath = GetModuleAssemblyPath(module);
-                moduleDescription.ModuleName = GetModuleName(module);
-                moduleDescription.Namespace = GetModuleNameSpace(module);
-                moduleDescription.ClassName = GetModuleClassName(module);
-
-                moduleDescription.Parameters = GetModuleParameters(module);
-
-                moduleDescription.Loop = GetModuleLoopOnExit(module);
+                return new ModuleDescription {
+                    AssemblyPath = GetModuleAssemblyPath(module),
+                    ModuleName = GetModuleName(module),
+                    Namespace = GetModuleNameSpace(module),
+                    ClassName = GetModuleClassName(module),
+                    Parameters = GetModuleParameters(module),
+                    Loop = GetModuleLoopOnExit(module)
+                };
             }
             catch (Exception e)
             {
-                Console.WriteLine("ERROR XmlConfigHandler.CreateModuleDescriptionFromXmlNode"
-                    + e.Message);
+                Console.WriteLine("ERROR XmlConfigHandler.CreateModuleDescriptionFromXmlNode" + e.Message);
                 throw;
             }
-
-            return moduleDescription;
         }
 
         private string GetModuleAssemblyPath(XmlNode module)

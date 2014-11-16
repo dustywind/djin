@@ -25,22 +25,15 @@ namespace Djin
              * DEBUG-MODE
              * Compile as Debug to gain acces to Playground
              */
-            if (args.Length > 0)
+            if (args.Length > 0 && args[0].CompareTo("--demonize") == 0)
             {
-                /**
-                 * // TODO daemonize
-                 * Thread.IsBackground = true
-                 */
-                if (args[0].CompareTo("--demonize") == 0)
-                {
-                    Thread djin = SetupDaemon();
-                    djin.Start((object)args.Skip<string>(1).ToArray<string>());
-                }
-                else
-                {
-                    Init((object) args);
-                }
+                Thread djin = SetupDaemon();
+                djin.Start((object)args.Skip<string>(1).ToArray<string>());
 
+            }
+            else
+            {
+                Init(args);
             }
             return;
         }
@@ -48,17 +41,23 @@ namespace Djin
         private static Thread SetupDaemon()
         {
             Thread daemon = new System.Threading.Thread(
-                new ParameterizedThreadStart(Djin.Program.Init)
+                new ParameterizedThreadStart(Djin.Program.InitForDaemon)
             );
             daemon.IsBackground = true;
             return daemon;
         }
 
-        public static void Init(object argo)
+        public static void InitForDaemon(object argo)
         {
-            string[] args = argo as string[];
+            Init(argo as string[]);
+        }
 
-            ComputeArgs(args);
+        public static void Init(string[] args)
+        {
+            if (args != null)
+            {
+                ComputeArgs(args);
+            }
 
             /**
              * __TODO__:
