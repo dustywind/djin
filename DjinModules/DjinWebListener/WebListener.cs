@@ -25,6 +25,8 @@ namespace Djin.Modules.WebListener
 
         public void Run()
         {
+            ProxyConfig pConf = new ProxyConfig { NumberOfThreads = 1, ServerBacklog = 5, ServerPort = 11000};
+            new Proxy(pConf).Test();
             return;
         }
 

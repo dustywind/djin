@@ -42,6 +42,16 @@
     <Compile Include="Playground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DjinModules\DjinWebListener\DjinWebListener.csproj">
+      <Project>{4351b81a-089b-4338-be6f-57516f46c50d}</Project>
+      <Name>DjinWebListener</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DjinShared\DjinInterfaces\DjinInterfaces.csproj">
+      <Project>{7342a27c-fbff-44cd-8b7b-76a40eb1f97e}</Project>
+      <Name>DjinInterfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
