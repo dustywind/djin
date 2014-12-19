@@ -21,8 +21,8 @@ namespace Djin.Core.ConfigManagement
         private const string ModuleInfoNameSpaceXPath = "./ModuleInfo/NameSpace";
         private const string ModuleInfoClassNameXPath = "./ModuleInfo/ClassName";
         private const string ModuleInfoParametersParameter = "./ModuleInfo/Parameters/Parameter";
-        private const string ModuleInfoParametersParameterName = "./Name";
-        private const string ModuleInfoParametersParameterValue = "./Value";
+        private const string ModuleInfoParametersParameterName = "name";
+        private const string ModuleInfoParametersParameterValue = "value";
 
         private const string ModuleConfigLoopOnExit = "./ModuleConfig/LoopOnExit";
 
@@ -133,11 +133,14 @@ namespace Djin.Core.ConfigManagement
             var parameterList = module.SelectNodes(ModuleInfoParametersParameter);
             foreach (XmlNode parameter in parameterList)
             {
-                var name = parameter.SelectSingleNode(ModuleInfoParametersParameterName).InnerText;
-                var value = parameter.SelectSingleNode(ModuleInfoParametersParameterValue).InnerText;
-                if (name != null && value != null)
-                {
+                try {
+                    string name = parameter.Attributes.GetNamedItem(ModuleInfoParametersParameterName).Value;
+                    string value = parameter.Attributes.GetNamedItem(ModuleInfoParametersParameterValue).Value;
                     parameters.Add(name, value);
+                }
+                catch (NullReferenceException)
+                {
+                    // TODO log
                 }
             }
             return parameters;
