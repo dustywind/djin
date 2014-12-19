@@ -1,0 +1,14 @@
+﻿<!ELEMENT Djin (Modules*)>
+<!ELEMENT Modules (Module*)>
+<!ELEMENT Module (ModuleInfo, ModuleConfig)>
+<!ELEMENT ModuleInfo (AssemblyPath, ModuleName, NameSpace, ClassName, Parameters?)>
+<!ELEMENT AssemblyPath (#PCDATA)>
+<!ELEMENT ModuleName (#PCDATA)>
+<!ELEMENT NameSpace (#PCDATA)>
+<!ELEMENT ClassName (#PCDATA)>
+<!ELEMENT Parameters (Parameter+)>
+<!ELEMENT Parameter EMPTY>
+<!ATTLIST Parameter name CDATA #REQUIRED>
+<!ATTLIST Parameter value CDATA #REQUIRED>
+<!ELEMENT ModuleConfig (LoopOnExit)>
+<!ELEMENT LoopOnExit (#PCDATA)>

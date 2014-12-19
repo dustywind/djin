@@ -1,9 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE Djin
+[
+  <!ELEMENT Djin (Modules*)>
+  <!ELEMENT Modules (Module*)>
+  <!ELEMENT Module (ModuleInfo, ModuleConfig)>
+  <!ELEMENT ModuleInfo (AssemblyPath, ModuleName, NameSpace, ClassName, Parameters?)>
+  <!ELEMENT AssemblyPath (#PCDATA)>
+  <!ELEMENT ModuleName (#PCDATA)>
+  <!ELEMENT NameSpace (#PCDATA)>
+  <!ELEMENT ClassName (#PCDATA)>
+  <!ELEMENT Parameters (Parameter+)>
+  <!ELEMENT Parameter EMPTY>
+  <!ATTLIST Parameter name CDATA #REQUIRED>
+  <!ATTLIST Parameter value CDATA #REQUIRED>
+  <!ELEMENT ModuleConfig (LoopOnExit)>
+  <!ELEMENT LoopOnExit (#PCDATA)>
+]>
 <Djin>
-  <Config>
-    
-  </Config>
+
   <Modules>
-    
+    <Module>
+      <ModuleInfo>
+        <AssemblyPath>../../../DjinModules/bin/DjinModuleTest.dll</AssemblyPath>
+        <ModuleName>DjinModuleTest</ModuleName>
+        <NameSpace>Djin.Modules.DjinModuleTest</NameSpace>
+        <ClassName>DjinModuleTest</ClassName>
+        <Parameters>
+          <Parameter name="foo" value="bar"></Parameter>
+        </Parameters>
+      </ModuleInfo>
+      <ModuleConfig>
+        <LoopOnExit>true</LoopOnExit>
+      </ModuleConfig>
+    </Module>
   </Modules>
+
 </Djin>

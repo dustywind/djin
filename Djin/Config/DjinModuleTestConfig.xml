@@ -1,4 +1,5 @@
-﻿<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Djin SYSTEM "DjinConfig.dtd">
 <Djin>
 
   <Modules>
@@ -9,10 +10,7 @@
         <NameSpace>Djin.Modules.DjinModuleTest</NameSpace>
         <ClassName>DjinModuleTest</ClassName>
         <Parameters>
-          <Parameter>
-            <Name>Foo</Name>
-            <Value>Bar</Value>
-          </Parameter>
+          <Parameter name="foo" value="bar"></Parameter>
         </Parameters>
       </ModuleInfo>
       <ModuleConfig>
