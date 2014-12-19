@@ -15,14 +15,13 @@ namespace Djin.Core.ModuleManagement
      */
     class ModuleManager : AbstractModuleManager
     {
-
         private Dictionary<ModuleDescription, IDjinModule> LoadedModuleInstances = new Dictionary<ModuleDescription,IDjinModule>();
         private Dictionary<ModuleDescription, ModuleThread> RunningModuleInstances = new Dictionary<ModuleDescription,ModuleThread>();
 
         private static object Lock = new object();
 
-        private static ModuleManager _Instance = null;
-        internal static ModuleManager Instance
+        private static ModuleManager _Instance = null; // Singleton
+        internal static ModuleManager Instance 
         {
             get
             {
@@ -49,7 +48,7 @@ namespace Djin.Core.ModuleManagement
                     }
                 }
             }
-            catch (Exception e) { throw; }
+            catch (Exception) { throw; }
         }
 
         override internal void RunLoadedModule(ModuleDescription description)
@@ -84,6 +83,7 @@ namespace Djin.Core.ModuleManagement
                     return;
                 }
                 ModuleThread mt = RunningModuleInstances[description];
+                mt.Stop();
             }
         }
 
@@ -117,6 +117,5 @@ namespace Djin.Core.ModuleManagement
         {
             LoadedModuleInstances.Add(description, instance);
         }
-
     }
 }
