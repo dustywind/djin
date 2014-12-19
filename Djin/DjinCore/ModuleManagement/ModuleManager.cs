@@ -91,6 +91,9 @@ namespace Djin.Core.ModuleManagement
         {
             AddModule(description);
             RunLoadedModule(description);
+#if DEBUG
+            System.Threading.Thread.Sleep(500);
+#endif
         }
 
         private ModuleThread GetRunningModule(ModuleDescription description)
