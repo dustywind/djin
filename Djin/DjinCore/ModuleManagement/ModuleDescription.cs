@@ -42,14 +42,14 @@ namespace Djin.Core.ModuleManagement
             }
         }
 
-        internal Dictionary<string, object> _Parameters;
-        internal Dictionary<string, object> Parameters
+        internal Dictionary<string, string> _Parameters;
+        internal Dictionary<string, string> Parameters
         {
             get
             {
                 if (_Parameters == null)
                 {
-                    _Parameters = new Dictionary<string, object>();
+                    _Parameters = new Dictionary<string, string>();
                 }
                 return _Parameters;
             }

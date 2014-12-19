@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Djin.Shared.Interfaces;
+
 namespace Djin.Modules.DjinModuleTest
 {
-    public class DjinModuleTest : global::Djin.Shared.Interfaces.IDjinModule
+    public class DjinModuleTest : IDjinModule
     {
         private string INSTALL = "Djin.Install";
         private string UNINSTALL = "Djin.Uninstall";
@@ -14,10 +16,12 @@ namespace Djin.Modules.DjinModuleTest
         private string RUN = "Djin.Run";
         private string ON_STOP = "Djin.OnStop";
 
-        private Dictionary<string, object> parameters;
+        private IDjinOutput output;
+        private Dictionary<string, string> parameters;
 
-        public DjinModuleTest(Dictionary<string, object> parameters)
+        public DjinModuleTest(IDjinOutput output, Dictionary<string, string> parameters)
         {
+            this.output = output;
             this.parameters = parameters;
         }
 
@@ -41,8 +45,10 @@ namespace Djin.Modules.DjinModuleTest
 
         public void Run()
         {
-            Console.WriteLine(this.RUN);
-            return;
+            while (true)
+            {
+                Console.WriteLine(this.RUN);
+            }
         }
 
         public void OnStop()

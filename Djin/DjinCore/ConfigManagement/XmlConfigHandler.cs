@@ -127,9 +127,9 @@ namespace Djin.Core.ConfigManagement
             return module.SelectSingleNode(ModuleInfoClassNameXPath).InnerText;
         }
 
-        private Dictionary<string, object> GetModuleParameters(XmlNode module)
+        private Dictionary<string, string> GetModuleParameters(XmlNode module)
         {
-            var parameters = new Dictionary<string, object>();
+            var parameters = new Dictionary<string, string>();
             var parameterList = module.SelectNodes(ModuleInfoParametersParameter);
             foreach (XmlNode parameter in parameterList)
             {
