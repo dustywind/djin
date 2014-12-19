@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 
 using Djin.Shared.Interfaces;
+using Djin.Core.Output;
 
 namespace Djin.Core.ModuleManagement
 {
@@ -16,6 +17,28 @@ namespace Djin.Core.ModuleManagement
         private Assembly assembly;
         private Module module;
         private Type type;
+
+        private Type[][] djinConstructors = new Type[][]{// The types are ordered by how suitable they are. The order is somewhat important!
+            new Type[] {typeof(IDjinOutput), typeof(Dictionary<string, string>)},   // IDjinModule(IDjinOutput, Dictionary<>);
+            new Type[] {typeof(IDjinOutput)},                                       // IDjinModule(IDjinOutput);
+            new Type[] {typeof(Dictionary<string, string>)},                        // IDjinModule(Dictionary<>);
+            Type.EmptyTypes,                                                        // IDjinModule();
+        };
+
+        private string InstantiationError
+        {
+            get
+            {
+                return "Could not create an instance of: " + Description;
+            }
+        }
+        private string MissingConstructorError
+        {
+            get
+            {
+                return "The module " + Description + " does not contain a Constructor suitable for Djin";
+            }
+        }
 
         internal InstanceCreator(ModuleDescription description) {
             this.Description = description;
@@ -28,14 +51,6 @@ namespace Djin.Core.ModuleManagement
         {
             try
             {
-                /*
-                ConstructorInfo constructorInfo = type.GetConstructor(new Type[0]);
-                var instance = constructorInfo.Invoke(null) as IDjinModule;
-                if (instance == null)
-                {
-                    throw new Exception("Could not create a instanceof: " + Description);
-                }
-                */
                 var instance = CreateMatchingInstance();
                 return instance;
             }
@@ -59,53 +74,60 @@ namespace Djin.Core.ModuleManagement
             {
                 instance = GetInstanceFromDjinSupportedConstructor() as IDjinModule;
             }
-            else if (HasDefaultConstruktor())
-            {
-                instance = GetInstanceFromDefaultconstructor() as IDjinModule;
-            }
             else {
-                throw new Exception("The module " + Description + " does not contain a Constructor suitable for Djin");
+                throw new Exception(MissingConstructorError);
             }
 
             if( instance == null) {
-                throw new Exception("Could not create an instance of: " + Description);
+                throw new Exception(InstantiationError);
             }
             return instance;
         }
 
         private bool HasDjinSupportedConstructor()
         {
-            // try to get the constructor that accepts one argument (one dictionary)
-            Type[] types = {typeof(Dictionary<string, object>)};
-            var constructor = type.GetConstructor(types);
-            if (constructor == null)
+            foreach (Type[] types in djinConstructors)
             {
-                return false;
+                var constructor = this.type.GetConstructor(types);
+                if (constructor != null && constructor.IsPublic) { return true; }
             }
-            return constructor.IsPublic;
-        }
-
-        private bool HasDefaultConstruktor()
-        {
-            var constructor = type.GetConstructor(new Type[0]);
-            if (constructor == null)
-            {
-                return false;
-            }
-            return constructor.IsPublic;
+            return false;
         }
 
         private object GetInstanceFromDjinSupportedConstructor()
         {
-            var constructor = type.GetConstructor( new Type[]{typeof(Dictionary<string, object>)});
-            return constructor.Invoke(new object[] {Description.Parameters});
+            foreach (var types in djinConstructors)
+            {
+                var constructor = this.type.GetConstructor(types);
+                if (constructor != null)
+                {
+                    return constructor.Invoke(CreateMatchingParameters(types));
+                }
+            }
+            throw new Exception(MissingConstructorError);
+        }
+
+        private object[] CreateMatchingParameters(Type[] paramTemplate)
+        {
+            object[] p = new object[paramTemplate.Length];
+            for (int i = 0; i < paramTemplate.Length; i++)
+            {
+                if (paramTemplate[i] == typeof(IDjinOutput))
+                {
+                    p[i] = OutputFactory.CreateOutput(Description) as object;
+                }
+                else if (paramTemplate[i] == typeof(Dictionary<string, string>))
+                {
+                    p[i] = Description.Parameters as object;
+                }
+            }
+            return p;
         }
 
         private object GetInstanceFromDefaultconstructor()
         {
-            var constructor = type.GetConstructor( new Type[0]);
+            var constructor = type.GetConstructor(Type.EmptyTypes);
             return constructor.Invoke(null);
         }
-
     }
 }
