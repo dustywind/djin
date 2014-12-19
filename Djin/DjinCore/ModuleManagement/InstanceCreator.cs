@@ -28,13 +28,15 @@ namespace Djin.Core.ModuleManagement
         {
             try
             {
+                /*
                 ConstructorInfo constructorInfo = type.GetConstructor(new Type[0]);
                 var instance = constructorInfo.Invoke(null) as IDjinModule;
-
                 if (instance == null)
                 {
                     throw new Exception("Could not create a instanceof: " + Description);
                 }
+                */
+                var instance = CreateMatchingInstance();
                 return instance;
             }
             catch (Exception e)
