@@ -1,5 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE Djin SYSTEM "DjinConfig.dtd">
+<!DOCTYPE Djin
+[
+  <!ELEMENT Djin (Modules*)>
+  <!ELEMENT Modules (Module*)>
+  <!ELEMENT Module (ModuleInfo, ModuleConfig)>
+  <!ELEMENT ModuleInfo (AssemblyPath, ModuleName, NameSpace, ClassName, Parameters?)>
+  <!ELEMENT AssemblyPath (#PCDATA)>
+  <!ELEMENT ModuleName (#PCDATA)>
+  <!ELEMENT NameSpace (#PCDATA)>
+  <!ELEMENT ClassName (#PCDATA)>
+  <!ELEMENT Parameters (Parameter+)>
+  <!ELEMENT Parameter EMPTY>
+  <!ATTLIST Parameter name CDATA #REQUIRED>
+  <!ATTLIST Parameter value CDATA #REQUIRED>
+  <!ELEMENT ModuleConfig (LoopOnExit)>
+  <!ELEMENT LoopOnExit (#PCDATA)>
+]>
 <Djin>
 
   <Modules>
@@ -14,7 +30,7 @@
         </Parameters>
       </ModuleInfo>
       <ModuleConfig>
-        <LoopOnExit>true</LoopOnExit>
+        <LoopOnExit>false</LoopOnExit>
       </ModuleConfig>
     </Module>
   </Modules>
