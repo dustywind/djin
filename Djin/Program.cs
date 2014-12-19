@@ -38,6 +38,7 @@ namespace Djin
             {
                 Init(args);
             }
+            Idle();
             return;
         }
 
@@ -50,12 +51,12 @@ namespace Djin
             return daemon;
         }
 
-        public static void InitForDaemon(object argo)
+        private static void InitForDaemon(object argo)
         {
             Init(argo as string[]);
         }
 
-        public static void Init(string[] args)
+        private static void Init(string[] args)
         {
             if (args != null)
             {
@@ -64,9 +65,11 @@ namespace Djin
 
             /**
              * __TODO__:
-             * - call ConfigManagement
-             * - call ModuleManagement
-             * - call CommunicationCenter // communicate with remote host
+             * [X] call ConfigManagement
+             * [X] call ModuleManagement
+             * [ ] implement DjinOutput / DjinSocket
+             * [ ] implement DjinLog
+             * [ ] call CommunicationCenter // communicate with remote host
              *
              * __Further explanation__:
              * CommunicationCenter will block and wait for
@@ -140,6 +143,14 @@ namespace Djin
             sb.Append('+');
 
             Console.WriteLine(sb.ToString());
+        }
+
+        private static void Idle()
+        {
+            while (true)
+            {
+                Thread.Sleep(1000);
+            }
         }
 
 #if DEBUG
