@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Djin.Core.ConfigManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,11 +26,13 @@ namespace Djin
              * DEBUG-MODE
              * Compile as Debug to gain acces to Playground
              */
+#if DEBUG
+            PrintWelcomeMessage();
+#endif
             if (args.Length > 0 && args[0].CompareTo("--demonize") == 0)
             {
                 Thread djin = SetupDaemon();
                 djin.Start((object)args.Skip<string>(1).ToArray<string>());
-
             }
             else
             {
@@ -72,6 +75,8 @@ namespace Djin
              * open a new Thread and execute the DjinModule.
              * Afterwards CC will wait for further Commands
              */
+            ConfigManager cm = new ConfigManager();
+            cm.StartModulesFromConfig();
 
             return;
         }
@@ -79,6 +84,7 @@ namespace Djin
         private static void ComputeArgs(string[] args)
         {
 #if DEBUG
+            PrintDebugMode();
             foreach (var arg in args)
             {
                 if (arg.CompareTo("--test") == 0)
@@ -91,7 +97,68 @@ namespace Djin
                 }
             }
 #endif
-
         }
+
+        /* Pretty print all input in a box like:
+         * +---------+
+         * | Example |
+         * +---------+
+         */
+        private static void PrettyPrint(string[] args)
+        {
+            if (args.Length == 0)
+            {
+                return;
+            }
+
+            int maxLineLength = 0;
+            foreach (string s in args)
+            {
+                maxLineLength = s.Length > maxLineLength ? s.Length : maxLineLength;
+            }
+            var sb = new StringBuilder();
+            // +---------+
+            sb.Append('+');
+            for (int i = 0; i < maxLineLength +2; i++) { sb.Append('-'); }
+            sb.AppendLine("+");
+
+            // | Example |
+            foreach (var s in args)
+            {
+                sb.Append("| ");
+                sb.Append(s);
+                for (int i = 0; i < maxLineLength - s.Length; i++)
+                {
+                    sb.Append(' ');
+                }
+                sb.AppendLine(" |");
+            }
+
+            // +---------+
+            sb.Append('+');
+            for (int i = 0; i < maxLineLength +2; i++) { sb.Append('-'); }
+            sb.Append('+');
+
+            Console.WriteLine(sb.ToString());
+        }
+
+#if DEBUG
+        private static void PrintWelcomeMessage()
+        {
+            PrettyPrint(new string[] {
+                "Herzlich Willkommen zu Djin <3",
+                "Bitte waehlen Sie ueber die Config die gewuenschten Module aus",
+                "Zur Auswahl stehen:",
+                "- DjinWebListener"
+            });
+        }
+#endif
+
+#if DEBUG
+        private static void PrintDebugMode()
+        {
+            PrettyPrint(new string[] { "DEBUG-Mode" });
+        }
+#endif
     }
 }
