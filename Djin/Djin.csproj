@@ -47,6 +47,10 @@
     <Compile Include="DjinCore\ConfigManagement\IConfigHandler.cs" />
     <Compile Include="DjinCore\ConfigManagement\XmlConfigHandler.cs" />
     <Compile Include="DjinCore\ModuleManagement\AbstractModuleManager.cs" />
+    <Compile Include="DjinCore\ModuleManagement\SuicideCollector.cs" />
+    <Compile Include="DjinCore\Output\DjinOutputFile.cs" />
+    <Compile Include="DjinCore\Output\DjinOutputSocket.cs" />
+    <Compile Include="DjinCore\Output\OutputFactory.cs" />
     <Compile Include="DjinCore\Playground\CorePlayground.cs" />
     <Compile Include="DjinCore\ConfigManagement\ConfigManager.cs" />
     <Compile Include="DjinCore\ModuleManagement\InstanceCreator.cs" />
@@ -61,9 +65,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Config\DjinConfig.xsd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Config\DjinConfig.dtd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DjinPlayground\DjinPlayground.csproj" Condition="'$(Configuration)'=='Debug'">
