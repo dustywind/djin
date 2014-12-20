@@ -8,6 +8,8 @@ namespace Djin.Modules.WebListener
 {
     public class WebListener : global::Djin.Shared.Interfaces.IDjinModule
     {
+        private Proxy _Proxy;
+
         public void Install()
         {
             return;
@@ -20,18 +22,23 @@ namespace Djin.Modules.WebListener
 
         public void OnStart()
         {
-            return;
+            _Proxy = new Proxy(new ProxyConfig
+            {
+                NumberOfThreads = 1,
+                ServerBacklog = 5,
+                ServerPort = 11000
+            });
         }
 
         public void Run()
         {
-            ProxyConfig pConf = new ProxyConfig { NumberOfThreads = 1, ServerBacklog = 5, ServerPort = 11000};
-            new Proxy(pConf).Test();
+            _Proxy.StartProxyServer();
             return;
         }
 
         public void OnStop()
         {
+            _Proxy.Close();
             return;
         }
     }

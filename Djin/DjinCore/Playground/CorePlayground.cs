@@ -16,9 +16,6 @@ namespace Djin.Core.Playground
             ConfigManager cm = new ConfigManager();
             cm.StartModulesFromConfig();
 
-
-
-
             /*
             var mdesc = new ModuleDescription();
 

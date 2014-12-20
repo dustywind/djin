@@ -40,11 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Proxy.cs" />
+    <Compile Include="ProxyHttpHelper\ProxyHttpFactory.cs" />
     <Compile Include="WebListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DjinShared\DjinInterfaces\DjinInterfaces.csproj">
+    <ProjectReference Include="..\..\DjinShared\Interfaces\DjinInterfaces\DjinInterfaces.csproj">
       <Project>{7342a27c-fbff-44cd-8b7b-76a40eb1f97e}</Project>
       <Name>DjinInterfaces</Name>
     </ProjectReference>

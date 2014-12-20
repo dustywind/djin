@@ -56,7 +56,6 @@ namespace Djin.Core.ModuleManagement
             try
             {
                 IDjinModule instance = GetLoadedModule(description);
-
                 lock (ModuleManager.Lock)
                 {
                     if (RunningModuleInstances.ContainsKey(description) == false)
@@ -69,7 +68,7 @@ namespace Djin.Core.ModuleManagement
             }
             catch (KeyNotFoundException)
             {
-                throw new Exception("Requested instance of: " + description + " hasn't been loaded yet.");
+                throw new Exception(String.Format("Requested instance of: {0} hasn't been loaded yet.", description));
             }
         }
 
