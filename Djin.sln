@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjinInterfaces", "DjinShare
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjinModuleTest", "DjinModules\DjinModuleTest\DjinModuleTest.csproj", "{CE697201-E5E0-4077-9662-63ACD379BEC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjinThreadPool", "DjinThreadPool\DjinThreadPool.csproj", "{6DB0EB20-9B12-48A1-896C-0E681AFC3B01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DjinThreadPool", "DjinShared\Library\DjinThreadPool\DjinThreadPool.csproj", "{6DB0EB20-9B12-48A1-896C-0E681AFC3B01}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{A864058D-46A0-422A-BBA7-E0931BE779A9}"
 EndProject

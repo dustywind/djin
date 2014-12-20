@@ -48,6 +48,7 @@
     <Compile Include="DjinCore\ConfigManagement\XmlConfigHandler.cs" />
     <Compile Include="DjinCore\ModuleManagement\AbstractModuleManager.cs" />
     <Compile Include="DjinCore\ModuleManagement\SuicideCollector.cs" />
+    <Compile Include="DjinCore\Output\DjinOutputConsole.cs" />
     <Compile Include="DjinCore\Output\DjinOutputFile.cs" />
     <Compile Include="DjinCore\Output\DjinOutputSocket.cs" />
     <Compile Include="DjinCore\Output\OutputFactory.cs" />
@@ -72,7 +73,7 @@
       <Project>{0a15c4ac-0f96-4d27-84ee-ff3aa9405714}</Project>
       <Name>DjinPlayground</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DjinShared\DjinInterfaces\DjinInterfaces.csproj">
+    <ProjectReference Include="..\DjinShared\Interfaces\DjinInterfaces\DjinInterfaces.csproj">
       <Project>{7342a27c-fbff-44cd-8b7b-76a40eb1f97e}</Project>
       <Name>DjinInterfaces</Name>
     </ProjectReference>
