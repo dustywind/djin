@@ -23,6 +23,11 @@ namespace Djin.Core.Output
             return this;
         }
 
+        public void WriteLine(string message)
+        {
+            Write(String.Format("{0}\n", message));
+        }
+
         public void Write(string message)
         {
             byte[] byteMessage = Encoding.ASCII.GetBytes(message);
